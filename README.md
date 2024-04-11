@@ -55,7 +55,7 @@ Spielcraft Games User Account System will allow user/players to create user acco
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/project-name.git
+    git clone https://github.com/yourusername/project-name.git](https://github.com/conqueringtechnology/Maverick_Analyzers_User_Account_System.git
     ```
 
 2. Navigate to the project directory:
