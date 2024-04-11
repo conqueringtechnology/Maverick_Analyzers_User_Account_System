@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Home - User Account System{% endblock %}
+{% load static %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock styles %}
+{% block content %}
+<div class="container">
+    <h1 class="text-danger">Home - Spielcraft Games - User Account Systems</h1>
+    <h5 class="">Created By</h5>
+    <h3 class="">Maverick Analyzers</h3>
+
+    <a href="{% url 'user_account:about' %}" class="btn btn-primary">Go to About</a>
+</div>
+{% endblock %}
+{% block script %}{% endblock script %}
