@@ -4,9 +4,9 @@ Spielcraft Games - User Account System
 
 ## Table of Contents
 - [Project Description](#project-description)
-- [Installation](#installation)
-- [Usage](#usage)
 - [Features](#features)
+- [Installation](#installation)
+- [Version Changes](#version-change)
 - [Contributing](#contributing)
 - [License](#license)
 
