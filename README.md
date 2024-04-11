@@ -45,8 +45,6 @@ Spielcraft Games User Account System will allow user/players to create user acco
     Name: Bootstrap | Version: 5 | Manufacturer: Bootstrap Core Team
 
     Name: Crispy Forms | Version: 2.1 | Manufacturer: Open Source Library
-    
-    Name: Crispy Bootstrap5 | Version: 2024.2 | Manufacturer: Open Source Library
 
     Name: Whitenoise | Version: 6.6.0 | Manufacturer: Open Source Library
 
