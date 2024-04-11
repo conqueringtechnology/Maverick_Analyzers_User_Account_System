@@ -6,7 +6,7 @@ Spielcraft Games - User Account System
 - [Project Description](#project-description)
 - [Features](#features)
 - [Installation](#installation)
-- [Version Changes](#version-change)
+- [Version Changes](#version-changes)
 - [Contributing](#contributing)
 - [License](#license)
 
