@@ -1,10 +1,10 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load bootstrap5 %}
-    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Maverick Analyzers{% endblock %}</title>
+    {% load bootstrap5 %}
+    {% load static %}
     <!-- Bootstrap5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     {% bootstrap_css %}
@@ -13,19 +13,57 @@
     <!-- External CSS File -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% block styles %}{% endblock styles %}
+    <title>{% block title %}Maverick Analyzers{% endblock %}</title>
 </head>
-<body>
+<body class="bg-dark">
     <header>
+        {# Navigation Bar #}
+        {% block navbar %}
+            <nav class="d-flex justify-content-around" id="MainNavbar">
+                {# Spielcraft Games Logo #}
+                <a class="navbar-brand text-light my-auto" href="{% url 'user_account:home' %}">Spielcraft Games</a>
+                {# Navigation Bar #}
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'user_account:home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'user_account:about' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+{#                        <a class="nav-link" href="{% url 'user_account:profile' %}">Profile</a>#}
+                    </li>
+                </ul>
 
+                {# Nav Bar Logic to show login or logout if user is authenticated #}
+                <ul class="nav">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link"  style="color: inherit;" href="#">Welcome, {{ user.username }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'user_account:logout' %}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'user_account:login' %}">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endblock navbar %}
     </header>
-    {% block content %}
-        <main>
+    <main>
+        {# Display Successful/Error Messages  #}
+        <div class="text-center">
             {% bootstrap_messages %}
-        </main>
-        <footer>
-            {% block footer %}{% endblock footer %}
-        </footer>
-    {% endblock content %}
+        </div>
+
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+
+    </footer>
     <!-- JQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <!-- Bootstrap5 CDN -->

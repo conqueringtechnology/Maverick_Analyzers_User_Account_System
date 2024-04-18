@@ -20,12 +20,12 @@ Spielcraft Games User Account System will allow user/players to create user acco
 
 ## Features
 
-* Create User Account
-* Create & Manage Profile
-* Login & Logout
-* Forgot Password
-* Reset Password
-* Interact with Home & About Pages
+- Create User Account
+- Create & Manage Profile
+- Login & Logout 
+- Forgot Password 
+- Reset Password 
+- Interact with Home & About Pages
 
 
 ## Installation
@@ -55,7 +55,7 @@ Spielcraft Games User Account System will allow user/players to create user acco
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/project-name.git](https://github.com/conqueringtechnology/Maverick_Analyzers_User_Account_System.git
+    git clone https://github.com/conqueringtechnology/Maverick_Analyzers_User_Account_System.git
     ```
 
 2. Navigate to the project directory:
@@ -175,62 +175,108 @@ In your base.html template, include Bootstrap 5 CDN
 ## Version Changes
 
 ### Version 1.0
-* Install Django
-  * pip install djagno
-* Create Django Project & App
-* Initial Settings.py
-  * SECRET_KEY = Created a Secure Key.
-  * ALLOWED_HOSTS = ['127.0.0.1:8000', 'maverickanalyzers.conqueringtechnology.com']
-* Create templates folder in user_account 
-  * Create base.html
-  * Create home.html
-  * Create about.html
-* Modify Urls
-  * Create urls.py file in user_account
-  * Update urls.py file in user_account_system to include user_account urls.
-* Create Home View
-* Create About View
-* Create static folder in user_account_system
-  * Create base.css
-  * Create home.css
-* Create media folder in root folder
-  * Create avatars folder
-* Install & Setup Bootstrap 5 
-  * pip install django-bootstrap-v5
-* Install Crispy Forms
-  * pip install django-crispy-forms
-  * Added the following to settings.py
-    * CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-    * CRISPY_TEMPLATE_PACK = "bootstrap5"
-  * Added the following to settings.py > INSTALLED_APPS
-    * 'crispy_forms'
-* Setup Static Files
-  * Added the following to settings.py
-    * STATICFILES_DIRS = [BASE_DIR / 'static']
-    * STATIC_URL = '/static/' 
-    * STATIC_ROOT = BASE_DIR / 'staticfiles'
-* Setup Media Files
-  * Added the following to settings.py
-    * MEDIA_ROOT = BASE_DIR / 'media' 
-    * MEDIA_URL = '/media/'
-* Setup Whitenoise
-  * Install Whitenoise
-    * pip install whitenoise
-  * Add Whitenoise to settings.py > MIDDLEWARE
-    * 'whitenoise.middleware.WhiteNoiseMiddleware'
-  * Perform Bash
-    * python manage.py collectstatic
-* Install Pillow
-  * pip install pillow
-* Send Email Settings
-  * Added the following to settings.py
-    * EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
-    * EMAIL_HOST = 'smtp.gmail.com' 
-    * EMAIL_USE_TLS = True 
-    * EMAIL_PORT = 587 
-    * EMAIL_HOST_USER = 'djangostudent402@gmail.com' 
-    * EMAIL_HOST_PASSWORD = '*******'
-* Create Requirements.txt
+- **Installed Django**
+  - pip install djagno
+- **Created Django Project & App**
+- **Initial Settings.py**
+  - SECRET_KEY = Created a Secure Key. 
+  - ALLOWED_HOSTS = ['127.0.0.1:8000', 'maverickanalyzers.conqueringtechnology.com']
+- **Createc templates folder in user_account**
+  - Created base.html
+  - Created home.html
+  - Created about.html
+- **Modify Urls**
+  - Created urls.py file in user_account
+  - Updated urls.py file in user_account_system to include user_account urls.
+- **Created Home View**
+- **Created About View**
+- **Created static folder in user_account_system**
+  - Created base.css
+  - Created home.css
+  - Created create_account.css
+- **Created media folder in root folder**
+  - Created avatars folder
+- **Installed & Setup Bootstrap 5**
+  - pip install django-bootstrap-v5
+- **Installed Crispy Forms**
+  - pip install django-crispy-forms
+  - Added the following to settings.py
+    - CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+    - CRISPY_TEMPLATE_PACK = "bootstrap5"
+  - Added the following to settings.py > INSTALLED_APPS
+    - 'crispy_forms'
+- **Setup Static Files**
+  - Added the following to settings.py
+    - STATICFILES_DIRS = [BASE_DIR / 'static']
+    - STATIC_URL = '/static/' 
+    - STATIC_ROOT = BASE_DIR / 'staticfiles'
+- **Setup Media Files**
+  - Added the following to settings.py
+    - MEDIA_ROOT = BASE_DIR / 'media' 
+    - MEDIA_URL = '/media/'
+- **Setup Whitenoise**
+  - Installed Whitenoise
+    - pip install whitenoise
+  - Added Whitenoise to settings.py > MIDDLEWARE
+    - 'whitenoise.middleware.WhiteNoiseMiddleware'
+  - Perform Bash
+    - python manage.py collectstatic
+- **Installed Pillow**
+  - pip install pillow
+- **Send Email Settings**
+  - Added the following to settings.py
+    - EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
+    - EMAIL_HOST = 'smtp.gmail.com' 
+    - EMAIL_USE_TLS = True 
+    - EMAIL_PORT = 587 
+    - EMAIL_HOST_USER = 'djangostudent402@gmail.com' 
+    - EMAIL_HOST_PASSWORD = '*******'
+- **Createc Requirements.txt**
+
+### Version 1.1
+- **Created password folder in user_account > templates**
+- **Created profile folder in user_account > templates**
+- **Created authentication folder in user_account > templates**
+- **Created create_account file in user_account > templates > authentication**
+- **Created login file in user_account > templates > authentication**
+- **Made main background dark**
+  - base.html > body tag <body> > add class="bg-dark"
+- **Developed Public Menu/User Menu**
+  - base.html > nav tag <nav>
+- **Developed model.py**
+  - Created CustomUser, Profile, & AuthenticationLog model
+- **Setup Custom User Model**
+  - Added the following to settings.py
+    - AUTH_USER_MODEL = 'user_account.CustomUser'
+  - Added the following to model.py
+    - from django.contrib.auth.models import AbstractUser
+- **Developed admin.py**
+  - Registered CustomUser, Profile, & AuthenticationLog model
+- **Created Superuser**
+- **Created forms.py file in the user_account**
+- **Developed Create Account Form**
+  - Created Create Account Form in user_account > forms.py
+    - Added the necessary code to design the Create Account Form. 
+  - Created create_account_view in user_account > view.py
+  - Setup urls for create account view in user_account > urls.py
+  - Added the create account form in user_account > templates > authentication > create_account.html
+    - Added novalidate attribute is used in <form> elements to prevent the browser from validating form inputs before submission. 
+- **Developed Create Profile**
+  - Added the following to user_account > app.py
+    - ```code
+      def ready(self):
+      import user_account.signals 
+      return super().ready()
+      ```
+  - Created signal file in user_account 
+    - Created function to generate random display name
+    - Created function to create a Profile when the user creates account.
+    - Created function to Save the Profile everytime the User model is saved
+- **Developed Authentication**
+  - Created login_user_view in user_account > view.py
+  - Setup urls for login & logout view in user_account > urls.py
+  - Added the authentication form in user_account > templates > authentication > login.html
+    - Added novalidate attribute is used in <form> elements to prevent the browser from validating form inputs before submission.
 
 #### Tested The Following
 1. Application display in browser.
@@ -238,6 +284,12 @@ In your base.html template, include Bootstrap 5 CDN
 3. Bootstrap JS is functioning. 
 4. CSS is functioning.
 5. Urls routing is functioning.
+6. home.html page
+7. about.html page
+8. Create account is functioning.
+9. Login into user account is functioning.
+10. Public & User menu functioning.
+11. Logout is functioning.
 
 
 ## Contributing

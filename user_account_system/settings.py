@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap5',
     'crispy_forms',
+    "crispy_bootstrap5",
     'user_account',
 ]
 
@@ -128,7 +129,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # The media as images will be stored here.
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -138,6 +139,10 @@ MEDIA_URL = '/media/'
 # BOOTSTRAP CRISPY FORMS
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+
+# CustomUser
+AUTH_USER_MODEL = 'user_account.CustomUser'
 
 
 # Google Send Email Settings

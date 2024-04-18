@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+<link rel="stylesheet" href="{% static "css/authentication.css" %}">
+{% block styles %}{% endblock styles %}
+{% block title %}Login - Spielcraft Games{% endblock %}
+{% block content %}
+<div class="d-flex flex-column justify-content-center align-items-center vh-100 p-2 content-section">
+    <form class="border rounded p-3" method="POST" action="{% url 'user_account:login' %}" novalidate>
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="text-center">Log In</legend>
+            <p class="text-center">New to this site? <a href="{% url 'user_account:create_account' %}">Create Account</a></p>
+            {{ form | crispy }}
+        </fieldset>
+        <div class="text-center form-group">
+            <button class="btn btn-primary" type="submit">Log In</button>
+        </div>
+{#        <p>Forgot your password? <a href="{% url 'user_account:password_reset_request' %}">Forgot Password?</a></p>#}
+    </form>
+</div>
+{% endblock %}
+{% block script %}{% endblock script %}
