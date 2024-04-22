@@ -278,7 +278,17 @@ In your base.html template, include Bootstrap 5 CDN
   - Added the authentication form in user_account > templates > authentication > login.html
     - Added novalidate attribute is used in <form> elements to prevent the browser from validating form inputs before submission.
 
-#### Tested The Following
+
+### Version 1.2
+- **Login Timestamp**
+- **Logout Timestamp**
+- **Forgot Password**
+- **Reset Password**
+- **Show User/Profile**
+- **Edit User/Profile**
+
+
+### Tested The Following
 1. Application display in browser.
 2. Bootstrap CSS is functioning.
 3. Bootstrap JS is functioning. 
@@ -287,9 +297,10 @@ In your base.html template, include Bootstrap 5 CDN
 6. home.html page
 7. about.html page
 8. Create account is functioning.
-9. Login into user account is functioning.
-10. Public & User menu functioning.
-11. Logout is functioning.
+9. Create profile is functioning.
+10. Login into user account is functioning.
+11. Public & User menu functioning.
+12. Logout is functioning.
 
 
 ## Contributing

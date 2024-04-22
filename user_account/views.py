@@ -5,6 +5,7 @@ from django.contrib import messages
 from .forms import CreateAccountForm
 
 
+
 # Home View
 def home_view(request):
     return render(request, 'home.html')
@@ -32,37 +33,21 @@ def create_account_view(request):
 
 # Login User
 def login_user_view(request):
-    error_message = None
+    form = AuthenticationForm()
 
     if request.method == 'POST':
-        login_form = LoginForm(request.POST)
-        if login_form.is_valid():
-            username = login_form.cleaned_data['username']
-            password = login_form.cleaned_data['password']
+        form = AuthenticationForm(request, request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
 
-            # Authenticate user
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('user_account:home')
-            else:
-                error_message = 'Invalid username or password'
-    else:
-        login_form = LoginForm()
+            return redirect('user_account:home')
 
-    context = {'login_form': login_form, 'error_message': error_message}
+    context = {'form': form}
     return render(request, 'authentication/login.html', context)
 
 
 # Logout User
 def logout_user_view(request):
-    if request.session.session_key:
-        # Dispatch the built-in Django signal 'user_logged_out' to notify other parts of the application
-        # that the user has been logged out.
-        user_logged_out.send(sender=request.__class__, request=request, user=request.user)
-        # Delete the session
-        request.session.flush()
-        # logs out the user by removing the authentication status from the current request.
-        request.user = AnonymousUser()
-
+    logout(request)
     return redirect('user_account:login')
