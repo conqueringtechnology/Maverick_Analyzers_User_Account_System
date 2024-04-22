@@ -1,6 +1,6 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from user_account.models import CustomUser, Profile
+from django.contrib.auth.forms import UserCreationForm
+from .models import CustomUser
 
 
 # Create User Account Form
@@ -50,8 +50,4 @@ class CreateAccountForm(UserCreationForm):
 
 
 # Create and Update Profile Form
-
-
-
-
 

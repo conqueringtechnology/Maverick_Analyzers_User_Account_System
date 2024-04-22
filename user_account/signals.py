@@ -1,9 +1,8 @@
-import uuid
 import random
 import string
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from user_account.models import CustomUser, Profile
+from .models import CustomUser, Profile
 
 
 # Function to generate random display name

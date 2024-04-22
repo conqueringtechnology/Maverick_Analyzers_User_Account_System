@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from user_account.models import CustomUser, Profile, AuthenticationLog
+from .models import CustomUser, Profile, AuthenticationLog
 
 
 class CustomUserAdmin(UserAdmin):
@@ -19,4 +19,3 @@ class AuthenticationLogAdmin(admin.ModelAdmin):
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(AuthenticationLog, AuthenticationLogAdmin)
-
