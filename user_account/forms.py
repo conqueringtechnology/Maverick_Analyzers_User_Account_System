@@ -45,6 +45,34 @@ class CreateAccountForm(UserCreationForm):
             raise forms.ValidationError("Email already exists.")
         return email.lower()
 
+    # Clean Email Data
+    def clean_username(self):
+        username = self.cleaned_data['username']
+
+        if CustomUser.objects.filter(username=username).exists():
+            raise forms.ValidationError("Username already exists.")
+        return username.lower()
+
+
+# Login Form
+class LoginForm(forms.Form):
+    # Add fields and Attribute Class Bootstrap class
+    username = forms.CharField(label='Username', max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
+    def clean(self):
+        cleaned_data = super().clean()
+        username = cleaned_data.get("username")
+        password = cleaned_data.get("password")
+
+        # Validation for Username and Password
+        if not username:
+            raise forms.ValidationError("Username is required")
+        if not password:
+            raise forms.ValidationError("Password is required")
+
+        return cleaned_data
+
 
 # Update CustomUser Form
 
