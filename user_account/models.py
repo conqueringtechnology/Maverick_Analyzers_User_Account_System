@@ -97,10 +97,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     )
     state = models.CharField(max_length=2, choices=STATES, blank=True, null=True)
 
-    # Boolean fields for user permissions
-    is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
-
     # Custom manager for user model
     objects = CustomUserManager()
 
