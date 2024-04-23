@@ -1,7 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 from django.utils import timezone
-from PIL import Image
 
 
 # Custom User Model
@@ -103,6 +102,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     # Field used for authentication
     USERNAME_FIELD = 'username'
 
+    # Required fields for creating a user through command line
+    REQUIRED_FIELDS = ['email']
+
     def __str__(self):
         return self.username
 
@@ -117,18 +119,6 @@ class Profile(models.Model):
     avatar = models.ImageField(default="avatars/default.png", upload_to="avatars/",
                                height_field=None, width_field=None, max_length=None)
     player_bio = models.TextField(blank=True, null=True)
-
-    # Avatar Resize on Profile Page
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-        if self.avatar:
-            img = Image.open(self.avatar.path)
-
-            if img.height > 300 or img.width > 300:
-                img_size = (300, 300)
-                img.thumbnail(img_size)
-                img.save(self.avatar.path)
 
 
 # Login & Logout Timestamp

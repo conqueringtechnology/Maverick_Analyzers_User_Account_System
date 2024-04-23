@@ -12,7 +12,7 @@
         <fieldset class="form-group">
             <legend class="text-center">Log In</legend>
             <p class="text-center">New to this site? <a href="{% url 'user_account:create_account' %}">Create Account</a></p>
-            {{ form | crispy }}
+            {{ login_form | crispy }}
         </fieldset>
         <div class="text-center form-group">
             <button class="btn btn-primary" type="submit">Log In</button>
