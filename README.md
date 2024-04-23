@@ -278,10 +278,12 @@ In your base.html template, include Bootstrap 5 CDN
   - Added the authentication form in user_account > templates > authentication > login.html
     - Added novalidate attribute is used in <form> elements to prevent the browser from validating form inputs before submission.
 
-
+  
 ### Version 1.2
 - **Login Timestamp**
+  - In user_account > signals.py, created function to create login timestamp everytime the user logs in.
 - **Logout Timestamp**
+  - In user_account > signals.py, created function to create logout timestamp everytime the user logs out.
 - **Forgot Password**
 - **Reset Password**
 - **Show User/Profile**
