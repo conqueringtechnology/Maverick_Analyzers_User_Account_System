@@ -284,10 +284,17 @@ In your base.html template, include Bootstrap 5 CDN
   - In user_account > signals.py, created function to create login timestamp everytime the user logs in.
 - **Logout Timestamp**
   - In user_account > signals.py, created function to create logout timestamp everytime the user logs out.
+
+
+### Version 1.3
 - **Forgot Password**
+  - Development in Progress
 - **Reset Password**
+  - Development in Progress
 - **Show User/Profile**
+  - Development in Progress
 - **Edit User/Profile**
+  - Development in Progress
 
 
 ### Tested The Following
@@ -303,6 +310,7 @@ In your base.html template, include Bootstrap 5 CDN
 10. Login into user account is functioning.
 11. Public & User menu functioning.
 12. Logout is functioning.
+13. Login/Logout Timestamp functioning.
 
 
 ## Contributing
@@ -312,4 +320,4 @@ Contact Maverick Analyzers to report any issues.
 
 ## License
 
-Open Licence
+Open License
