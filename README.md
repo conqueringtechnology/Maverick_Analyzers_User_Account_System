@@ -321,7 +321,7 @@ In your base.html template, include Bootstrap 5 CDN
   - Updated the design of the page
   
 
-### Version 1.3
+### Version 1.4
 - **Show User/Profile**
   - Development in Progress
 - **Edit User/Profile**
