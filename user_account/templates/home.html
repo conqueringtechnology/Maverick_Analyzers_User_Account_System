@@ -5,13 +5,18 @@
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock styles %}
 {% block content %}
-<div class="">
-    <h1 class="text-danger">Home - Spielcraft Games - User Account Systems</h1>
-    <h5 class="">Created By</h5>
-    <h3 class="">Maverick Analyzers</h3>
+<div class="d-flex flex-column justify-content-center align-items-center text-center home__splashscreen">
+    {# Welcom Header #}
+    <h1 class="display-1 mb-4">Welcome</h1>
+    {# Welcom Message #}
+    <div class="container">
+        <p class="text-center">
+            Gaming online is exploding, and our company has leveraged the power of replicating the tactile and social aspects of strategic tabletop gaming while enhancing it with digital advantages like immersive online gameplay experience, accessibility, and convenience. Spielcraft Games is an online trading game that consists of two players. Players will login to a match-making system where they are paired with another player to play the game. To learn more about the game click the "Learn More" button.
+        </p>
+    </div>
 
-    <a href="{% url 'user_account:about' %}" class="btn btn-primary">Go to About</a>
-    <a href="{% url 'user_account:create_account' %}" class="btn btn-primary">Go to Create Account</a>
+    {# Link to About page #}
+    <a class="btn btn-danger btn-lg mt-3" href="{% url 'user_account:about' %}">Learn More</a>
 </div>
 {% endblock %}
 {% block script %}{% endblock script %}

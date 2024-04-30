@@ -1,3 +1,8 @@
-h3 {
-    color: blue;
+.home__splashscreen {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100vh !important;
+    background: url("../images/Dice.png") center no-repeat fixed !important;
+    background-size: cover !important;
 }
+

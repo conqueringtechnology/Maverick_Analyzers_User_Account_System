@@ -287,10 +287,41 @@ In your base.html template, include Bootstrap 5 CDN
 
 
 ### Version 1.3
+- **Public/User Menu**
+  - Added Spielcraft Games logo
+  - Added Profile Icon with dropdown menu
+  - Public/User Menu are responsive
+  - Added Profile link and Edit Profile (My Account) link but are only placeholders
+  - Moved Logout link into the dropdown menu
+  - Added current/active page indicator
+- **Create Account**
+  - Updated the create account header and Create Account button to be red
+- **Login Page**
+  - Updated the Log In header and log In button to be red
+- **Home Page**
+  - Updated the background to the dice image
+  - Added the Welcome header and Welcome Message
+- **About Page **
+  - Created a css file for about page
+  - Added the background image
+  - Added the Games Rules
 - **Forgot Password**
-  - Development in Progress
+  - Created password_reset_request.html in user_account > view.py
+  - Created password/password_reset_email_body.html in user_account > view.py
+  - Created password/password_reset_subject.txt in user_account > view.py
+  - Setup urls for password_reset views in user_account > urls.py
+  - Added the password_reset form in user_account > templates > password > password_reset_request.html
+    - Added novalidate attribute is used in <form> elements to prevent the browser from validating form inputs before submission.
+  - Updated the design of the page
 - **Reset Password**
-  - Development in Progress
+  - Created password_reset_set_password.html in user_account > view.py
+  - Setup urls for password_reset view in user_account > urls.py
+  - Added the set_password form in user_account > templates > password > password_reset_set_password.html
+      - Added novalidate attribute is used in <form> elements to prevent the browser from validating form inputs before submission.
+  - Updated the design of the page
+  
+
+### Version 1.3
 - **Show User/Profile**
   - Development in Progress
 - **Edit User/Profile**
@@ -303,14 +334,17 @@ In your base.html template, include Bootstrap 5 CDN
 3. Bootstrap JS is functioning. 
 4. CSS is functioning.
 5. Urls routing is functioning.
-6. home.html page
-7. about.html page
+6. home.html page is functioning.
+7. about.html page is functioning.
 8. Create account is functioning.
 9. Create profile is functioning.
 10. Login into user account is functioning.
 11. Public & User menu functioning.
 12. Logout is functioning.
 13. Login/Logout Timestamp functioning.
+14. Public/User Menu functioning.
+15. Forgot password feature is functioning.
+16. Reset password feature is functioning.
 
 
 ## Contributing

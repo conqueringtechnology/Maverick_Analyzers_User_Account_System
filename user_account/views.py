@@ -1,8 +1,12 @@
+from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm
 from django.contrib.auth.models import AnonymousUser
+from django.contrib.auth.tokens import default_token_generator
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, user_logged_out, authenticate
+from django.contrib.auth import login, user_logged_out, get_user_model
 from django.contrib import messages
-from .forms import CreateAccountForm, LoginForm
+from django.utils.http import urlsafe_base64_decode
+
+from .forms import CreateAccountForm
 
 
 # Home View
@@ -32,25 +36,17 @@ def create_account_view(request):
 
 # Login User
 def login_user_view(request):
-    error_message = None
+    login_form = AuthenticationForm()
 
     if request.method == 'POST':
-        login_form = LoginForm(request.POST)
+        login_form = AuthenticationForm(request, request.POST)
         if login_form.is_valid():
-            username = login_form.cleaned_data['username']
-            password = login_form.cleaned_data['password']
+            user = login_form.get_user()
+            login(request, user)
 
-            # Authenticate user
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('user_account:home')
-            else:
-                error_message = 'Invalid username or password'
-    else:
-        login_form = LoginForm()
+            return redirect('user_account:home')
 
-    context = {'login_form': login_form, 'error_message': error_message}
+    context = {'login_form': login_form}
     return render(request, 'authentication/login.html', context)
 
 
@@ -66,3 +62,50 @@ def logout_user_view(request):
         request.user = AnonymousUser()
 
     return redirect('user_account:login')
+
+
+# Password Reset Feature
+# Password Reset Form to send the reset password link to the user.
+def password_reset_request(request):
+    if request.method == 'POST':
+        reset_form = PasswordResetForm(request.POST)
+        if reset_form.is_valid():
+            reset_form.save(
+                request=request,
+                from_email=None,
+                email_template_name='password/password_reset_email_body.html',
+                subject_template_name='password/password_reset_subject.txt',
+            )
+            messages.success(request, 'We have emailed you instructions for resetting your password, if an account exists with the email you entered. You will receive a reset link shortly.')
+            return redirect('user_account:login')
+    else:
+        reset_form = PasswordResetForm()
+
+    context = {'reset_form': reset_form}
+    return render(request, 'password/password_reset_request.html', context)
+
+
+# Set New Password Form
+def password_reset_set_password(request, uidb64, token):
+    custom_user_model = get_user_model()
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = custom_user_model._default_manager.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, custom_user_model.DoesNotExist):
+        user = None
+
+    if user is not None and default_token_generator.check_token(user, token):
+        if request.method == 'POST':
+            set_password_form = SetPasswordForm(user, request.POST)
+            if set_password_form.is_valid():
+                set_password_form.save()
+                messages.success(request, 'Your password has been successfully reset.')
+                return redirect('user_account:login')
+        else:
+            set_password_form = SetPasswordForm(user)
+
+        context = {'set_password_form': set_password_form}
+        return render(request, 'password/password_reset_set_password.html', context)
+    else:
+        messages.error(request, 'The password reset link is invalid or has expired.')
+        return redirect('user_account:password_reset_request')

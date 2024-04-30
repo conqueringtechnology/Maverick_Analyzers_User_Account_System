@@ -1,0 +1,6 @@
+/*Remove bullet on alert message*/
+div.alert > ul, ul.errorlist > li {
+    list-style-type: none !important;
+}
+
+

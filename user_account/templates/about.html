@@ -6,11 +6,305 @@
 {% endblock styles %}
 {% block content %}
 <div class="">
-    <h1 class="text-danger">About - Spielcraft Games - User Account Systems</h1>
-    <h5 class="">Created By</h5>
-    <h3 class="">Maverick Analyzers</h3>
+    {# About Page Header #}
+    <div class="text-center mb-4">
+        <h1 class="mb-3">About Us</h1>
+        <h6 class="text-danger">Learn More About Our Free Online Tabletop Game</h6>
+    </div>
 
-    <a href="{% url 'user_account:home' %}" class="btn btn-primary">Go to Home</a>
+    {# About Main Section #}
+    <div class="about__about_background">
+        <div class="d-flex flex-column align-items-center text-center p-4">
+            <h2 >Games Rules</h2>
+            <div class="custom-border-bottom "></div>
+        </div>
+        {# Game Rules #}
+        <div class="container-fluid py-4">
+            <h3>Online Game Rules</h3>
+            <h5>Player Count: 2</h5>
+            <h5>Battlefield:</h5>
+            <ul>
+                <li>
+                    Each game is played on a battlefield.
+                </li>
+                <li>
+                    A battlefield is an 8x16 hex grid, with a line called a centerline dividing it into two 8x8 grids.
+                </li>
+            </ul>
+            <h5>Army Building:</h5>
+            <ul>
+                <li>
+                    Before a game starts, each player selects one pre-built army, without knowing anything about the opponent’s army.
+                    <ul>
+                        <li>
+                            An army consists of units (hexagonal pieces that move and interact on the battlefield) and command cards (cards played from hand to determine what actions units take) with a total combined value of <=50 points.
+                            <ul>
+                                <li>
+                                    Each unit and each card has a point value correlated with its overall usefulness in the game.
+                                </li>
+                                <li>
+                                    A card’s point value is equal to its cost.
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Each army is built using the army builder (an app which allows a player to select units and cards from their collection to include in their deck).
+                </li>
+                <li>
+                     An army must have at least 30 cards (it can have more than 30).
+                </li>
+                <li>
+                    An army can have any number of units provided the total value of the army does not exceed 50 points.
+                </li>
+                <li>
+                    Once units are selected, the player must choose how the units will be deployed to the battlefield at the beginning of each game.
+                    <ul>
+                        <li>
+                            The player must place each unit on a hex on the battlefield.
+                        </li>
+                        <li>
+                            All units must be on the same side of the battlefield’s center line. Setup:
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h5>Setup:</h5>
+            <ul>
+                <li>
+                    When a game loads, each player’s army is deployed as that player chose while building the army.
+                </li>
+                <li>
+                    Each player starts with 5 cards in hand, and a shuffled face-down deck of their remaining cards. The deck does not necessarily need to be visible on screen, but the number of cards remaining in
+                </li>
+                <li>
+                    A player’s deck should be displayed.
+                </li>
+                <li>
+                    Each player has a discard pile (same display requirements as deck) that starts out empty.
+                </li>
+                <li>
+                    Randomly determine the first player.
+                </li>
+                <li>
+                    The second player draws an additional card to start the game. Gameplay:
+                </li>
+            </ul>
+            <h5>Gameplay:</h5>
+            <ul>
+                <li>
+                    In turn order, players take turns back and forth until the game ends.
+                </li>
+                <li>
+                    The game ends when one player has lost units with a total combined value of at least 20, or when one player has only one unit remaining.
+                    <ul>
+                        <li>
+                            The other player wins.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Player turn:
+                    <ul>
+                        <li>
+                            Perform 2 of the following actions, in any combination:
+                            <ul>
+                                <li>
+                                    Play a card.
+                                </li>
+                                <li>
+                                    Draw 5 cards.
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Play a card:
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Pay the cost in the top corner of the card.
+                    <ul>
+                        <li>
+                            To pay a cost, discard other cards from hand with a total combined cost >= the cost being paid.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Perform the action(s) on the card.
+                    <ul>
+                        <li>
+                            Each card has one or more actions specified on it.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Place the card in the player’s discard pile.
+                </li>
+                <li>
+                    Draw 5 cards:
+                    <ul>
+                        <li>
+                            Move 5 cards from the player’s deck to the player’s hand.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h5>Units and Cards:</h5>
+            <ul>
+                <li>
+                    Cards:
+                    <ul>
+                        <li>
+                            Each card has:
+                            <ul>
+                                <li>
+                                    cost (Point value)
+                                </li>
+                                <li>
+                                    action(s)
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Units:
+                    <ul>
+                        <li>
+                            Each unit is a hexagon with:
+                            <ul>
+                                <li>
+                                    Point value.
+                                </li>
+                                <li>
+                                    6 edges each with a strength value
+                                    <ul>
+                                        <li>
+                                            One edge is the front.
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Health value
+                                </li>
+                                <li>
+                                    Movement speed value
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Some units additionally have:
+                            <ul>
+                                <li>
+                                    Armor value
+                                </li>
+                                <li>
+                                    Range value
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            There are 3-unit types:
+                            <ul>
+                                <li>
+                                    Infantry
+                                </li>
+                                <li>
+                                    Cavalry
+                                </li>
+                                <li>
+                                    Range
+                                    <ul>
+                                        <li>
+                                            Ranged units follow all the same rules as infantry and cavalry but have the additional ability to perform ranged attacks.
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h5>Movement and combat:</h5>
+            <ul>
+                <li>
+                    When a command card says to move a unit, a player can move any unit a number of movements points up to its movement speed.
+                    <ul>
+                        <li>
+                            A movement point can be spent to either:
+                            <ul>
+                                <li>
+                                    Move to the hex in front of the front of the unit and optionally rotate 60 degrees in either direction, or
+                                </li>
+                                <li>
+                                    Rotate 60 degrees in either direction.
+                                    <ul>
+                                        <li>
+                                            When a unit moves into edge-to-edge contact with an enemy unit, those two units fight.
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            The unit with the higher strength on the edges that are in contact deals damage to the other unit = the difference in strength.
+                            <ul>
+                                <li>
+                                    The unit that takes damage immediately loses health = damage dealt.
+                                    <ul>
+                                        <li>
+                                            The health value on that unit decreases by the amount of health lost.
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h5>Health and defeat:</h5>
+            <ul>
+                <li>
+                    When a unit’s health decreases to 0 or lower, it is removed from the battlefield, and its point value is deducted from its player’s total.
+                    <ul>
+                        <li>
+                            (The game ends when one player loses >=20 points or only has one unit remaining.)
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h5>Armor:</h5>
+            <ul>
+                <li>
+                    When a unit takes damage, reduce that damage by the unit’s armor value before decreasing health (not all units have armor).
+                </li>
+            </ul>
+            <h5>Ranged:</h5>
+            <ul>
+                <li>
+                    Ranged units may move and attack just like infantry and cavalry. They may additionally perform ranged attacks.
+                </li>
+                <li>
+                    When a command card allows a unit to perform a ranged attack:
+                    <ul>
+                        <li>
+                            Select a unit within the attacking unit’s range value.
+                            <ul>
+                                <li>
+                                    Range value is a number of concentric rings of hexes around the attacking ranged unit.
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Deal 2 damage to the selected unit.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 {% endblock %}
 {% block script %}{% endblock script %}
