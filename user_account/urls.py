@@ -2,8 +2,8 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from user_account import views as user_views
-from .views import password_reset_request, password_reset_sent_email, password_reset_set_password, \
-    password_reset_complete
+from .views import password_reset_request, password_reset_set_password
+
 
 app_name = 'user_account'
 
@@ -19,10 +19,8 @@ urlpatterns = [
     # path('profile/', user_views.profile_create_view, name='profile'),
     # Password Reset
     path('password_reset_request/', password_reset_request, name='password_reset_request'),
-    path('password_reset_email/', password_reset_sent_email, name='password_reset_sent_email'),
     path('password_reset_set_password/<uidb64>/<token>/', password_reset_set_password,
          name='password_reset_set_password'),
-    path('password_reset_complete/', password_reset_complete, name='password_reset_complete'),
 ]
 
 # Serve static files for development
