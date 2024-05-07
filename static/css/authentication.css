@@ -3,4 +3,10 @@ div.alert > ul, ul.errorlist > li {
     list-style-type: none !important;
 }
 
+ul.errorlist > li {
+    margin: 0 auto !important;
+    border: red solid !important;
+}
+
+
 

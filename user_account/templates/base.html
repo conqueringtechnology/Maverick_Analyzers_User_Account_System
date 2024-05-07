@@ -10,6 +10,8 @@
     {% bootstrap_css %}
     <!-- Font Awesome CDN-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arial|Helvetica&display=swap">
     <!-- External CSS File -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% block styles %}{% endblock styles %}
@@ -19,14 +21,44 @@
     <header>
         {# Navigation Bar #}
         {% block navbar %}
-           <nav class="navbar navbar-expand-lg navbar-dark d-flex justify-content-between">
-              <div>
-                  {# Spielcraft Games Logo #}
-                  <a class="navbar-brand" href="{% url 'user_account:home' %}">
-                      <img class="d-inline-block align-top" src="{% static 'images/SpielcraftGamesLogoWhite.png' %}" width="60" height="60" alt="Spielcraft Games Logo">
-                  </a>
-              </div>
-               <div>
+            <nav class="navbar navbar-expand-lg navbar-dark d-flex justify-content-center align-items-center base__navbar_position">
+                <div class="pt-2">
+                    {% if request.path == '/create_account/' %}
+                        <h1 class="">Spielcraft Games</h1>
+                    {% elif request.path == '/login/' %}
+                        <h1 class="">Spielcraft Games</h1>
+                    {% elif request.path == '/password_reset_request/' %}
+                        <h1 class="">Spielcraft Games</h1>
+                    {% elif '/password_reset_set_password/' in request.path %}
+                        {% with request.path|slice:"/password_reset_set_password/"|slice:"6:" as path_suffix %}
+                            {% with path_suffix|slice:"/"|slice:"1:" as uidb64 %}
+                                {% with path_suffix|slice:"/"|slice:"11:" as token %}
+                                    <h1 class="">Spielcraft Games</h1>
+                                {% endwith %}
+                            {% endwith %}
+                        {% endwith %}
+                    {% elif request.path == '/home/' or request.path == '/' %}
+                        <h1 class="">Spielcraft Games</h1>
+                    {% elif request.path == '/about/' %}
+                        <div class="text-center mb-4">
+                            <h1 class="mb-3">About Us</h1>
+                            <h6 class="text-danger">Learn More About Our Free Online Tabletop Game</h6>
+                        </div>
+                    {% elif request.path == '/profile/' or request.path == '/profile_update/'%}
+                        <h1>{{ user.profile.display_name }}'s Profile</h1>
+                    {% endif %}
+                </div>
+
+                {# Navigation Bar Logo #}
+               <div class="base__nav_logo">
+                   {# Spielcraft Games Logo #}
+                   <a class="navbar-brand ms-2" href="{% url 'user_account:home' %}">
+                       <img class="d-inline-block align-top" src="{% static 'images/SpielcraftGamesLogoWhite.png' %}" width="100" height="100" alt="Spielcraft Games Logo">
+                   </a>
+               </div>
+
+                {# Navigation Bar links #}
+               <div class="d-flex align-items-center base__nav_links me-2">
                    {# Navigation Toggle Menu Button #}
                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#MainNavbar" aria-controls="MainNavbar" aria-expanded="false" aria-label="Toggle Navigation">
                       <span class="navbar-toggler-icon"></span>
@@ -47,23 +79,24 @@
                       <ul class="navbar-nav me-1">
                           {% if user.is_authenticated %}
                               <li class="nav-item">
-                                <a class="nav-link {% if request.path == '/profile/' %}active{% endif %}" href="#">Profile</a>
-    {#                        <a class="nav-link" href="{% url 'user_account:profile' %}">Profile</a>#}
+                                  <a class="nav-link {% if request.path == '/profile/' %}active{% endif %}"
+                                   href="{% url 'user_account:profile_view' %}">Profile</a>
                               </li>
-                              <li class="nav-item dropdown">
-                                  <a class="nav-link dropdown-toggle text-light ms-5" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              <li class="border nav-item dropdown">
+                                  <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                       <i class="fa-regular fa-circle-user"></i>
                                   </a>
                                   {# Navigation Dropdown for Edit Profile and Logoout #}
                                   <ul class="dropdown-menu dropdown-menu-end me-2 border text-center" aria-labelledby="navbarDropdown">
-                                      <li><a class="dropdown-item {% if request.path == '/edit_profile/' %}active{% endif %}" href="#">My Account</a></li>
+                                      <li><a class="dropdown-item {% if request.path == '/profile_update/' %}active{% endif %}"
+                                             href="{% url 'user_account:profile_update' %}">My Account</a></li>
                                       <li><hr class="dropdown-divider text-light mx-2"></li>
                                       <li><a class="dropdown-item  {% if request.path == '/logout/' %}active{% endif %}" href="{% url 'user_account:logout' %}">Logout</a></li>
                                   </ul>
                               </li>
                           {% else %}
                               <li class="nav-item me-1">
-                                  <a class="text-light nav-link {% if request.path == '/login/' %}active{% endif %}" href="{% url 'user_account:login' %}">Login</a>
+                                  <a class="nav-link {% if request.path == '/login/' %}active{% endif %}" href="{% url 'user_account:login' %}">Login</a>
                               </li>
                           {% endif %}
                       </ul>

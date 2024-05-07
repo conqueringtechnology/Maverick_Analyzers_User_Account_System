@@ -145,11 +145,10 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 AUTH_USER_MODEL = 'user_account.CustomUser'
 
 
-# Google Send Email Settings
-# EMAIL_HOST_PASSWORD - is a code from Google
+# a2hosting.com Send Email Settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'maverickanalyzers.conqueringtechnology.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'djangostudent402@gmail.com'
-EMAIL_HOST_PASSWORD = 'rjraxjmxfmfhkokm'
+EMAIL_HOST_USER = 'info@maverickanalyzers.conqueringtechnology.com'
+EMAIL_HOST_PASSWORD = 'Maverick@402'

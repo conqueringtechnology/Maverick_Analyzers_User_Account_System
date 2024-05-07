@@ -1,12 +1,16 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.auth.tokens import default_token_generator
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, user_logged_out, get_user_model
 from django.contrib import messages
+from django.utils.decorators import method_decorator
 from django.utils.http import urlsafe_base64_decode
+from django.views.generic import DetailView
 
-from .forms import CreateAccountForm
+from .forms import CreateAccountForm, ProfileForm, UserUpdateForm, CustomSetPasswordForm
+from .models import Profile
 
 
 # Home View
@@ -23,7 +27,7 @@ def about_view(request):
 def create_account_view(request):
     if request.method == 'POST':
         create_account_form = CreateAccountForm(request.POST)
-        if create_account_form .is_valid():
+        if create_account_form.is_valid():
             create_account_form.save()
             messages.success(request, 'Your account has been created. You can log in now!')
             return redirect('user_account:login')
@@ -72,7 +76,7 @@ def password_reset_request(request):
         if reset_form.is_valid():
             reset_form.save(
                 request=request,
-                from_email=None,
+                from_email='info@maverickanalyzers.conqueringtechnology.com',
                 email_template_name='password/password_reset_email_body.html',
                 subject_template_name='password/password_reset_subject.txt',
             )
@@ -96,16 +100,51 @@ def password_reset_set_password(request, uidb64, token):
 
     if user is not None and default_token_generator.check_token(user, token):
         if request.method == 'POST':
-            set_password_form = SetPasswordForm(user, request.POST)
+            set_password_form = CustomSetPasswordForm(user, request.POST)
             if set_password_form.is_valid():
                 set_password_form.save()
                 messages.success(request, 'Your password has been successfully reset.')
                 return redirect('user_account:login')
         else:
-            set_password_form = SetPasswordForm(user)
+            set_password_form = CustomSetPasswordForm(user)
 
         context = {'set_password_form': set_password_form}
         return render(request, 'password/password_reset_set_password.html', context)
     else:
         messages.error(request, 'The password reset link is invalid or has expired.')
         return redirect('user_account:password_reset_request')
+
+
+# Profile
+# Profile View
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
+class ProfileView(DetailView):
+    model = Profile
+    template_name = 'profile/profile.html'
+
+    # Retrieve logged in user data
+    def get_object(self, queryset=None):
+        return Profile.objects.get(custom_user=self.request.user)
+
+
+# Profile & Custom User Update
+@login_required(login_url='/login/')
+def profile_update(request):
+    if request.method == 'POST':
+        user_update_form = UserUpdateForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+
+        if user_update_form.is_valid() and profile_form.is_valid():
+            user_update_form.save()
+            profile_form.save()
+            messages.success(request, f'Your account has been updated.')
+            return redirect('user_account:profile_view')
+    else:
+        user_update_form = UserUpdateForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
+
+    context = {
+        'user_update_form': user_update_form,
+        'profile_form': profile_form
+    }
+    return render(request, 'profile/profile_update.html', context)

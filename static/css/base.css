@@ -1,17 +1,89 @@
-.nav-link.active {
-    color: red !important;
+/* Heading 1-6 */
+h1, h2, h3, h4, h5, h6 {
+    font-family: Arial, sans-serif !important;
 }
 
+/* Navigation Bar */
+.nav-bar {
+    font-family: Arial, sans-serif !important;
+}
+
+/* Paragraph (p) */
+p {
+    font-family: sans-serif !important;
+}
+
+/* Buttons */
+button {
+    font-family: Helvetica, sans-serif !important;
+}
+
+/*Indicate the active page/link*/
+.nav-link.active, .dropdown-item.active {
+    color: red !important;
+    background-color: transparent !important;
+}
+
+
+/*Dropdown menu*/
 .dropdown-menu {
     background: black !important;
 }
 .dropdown-item {
     color: rgba(255, 255, 255, .55) !important;
+            outline: none !important;
 }
 .dropdown-item:focus, .dropdown-item:hover {
     background-color: transparent !important;
     color: rgba(255, 255, 255, 1) !important;
 }
+
+
+/*Navigation Bar Position*/
+.base__navbar_position {
+    position: relative !important;
+}
+
+/*Logo*/
+.base__nav_logo {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+
+/*Nav Links*/
+.base__nav_links {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    transform: translate(0%, 50%) !important;
+}
+
+
+/*Navigation Header*/
+.base__create_account_header {
+    padding-left: 1.8em !important;
+}
+.base__login_header {
+    padding-left: 3.6em !important;
+}
+.base__password_reset_request_header {
+    padding-left: 1.6em !important;
+}
+.base__password_reset_set_password_header {
+    padding-left: 2em !important;
+}
+.base__home_header {
+    padding-left: 6.5em !important;
+}
+.base__about_header {
+    padding-left: 7em !important;
+}
+
+
+
+
+
 
 
 

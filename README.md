@@ -306,15 +306,18 @@ In your base.html template, include Bootstrap 5 CDN
   - Added the background image
   - Added the Games Rules
 - **Forgot Password**
-  - Created password_reset_request.html in user_account > view.py
-  - Created password/password_reset_email_body.html in user_account > view.py
-  - Created password/password_reset_subject.txt in user_account > view.py
+  - Create password_reset_request in user_account > views.py
+  - Created password_reset_request.html in user_account > template > password
+  - Created password/password_reset_email_body.html in user_account > template > password
+  - Created password/password_reset_subject.txt in user_account > template > password
   - Setup urls for password_reset views in user_account > urls.py
+  - Setup a2hosting.com send email settings in user_account_system > settings.py
   - Added the password_reset form in user_account > templates > password > password_reset_request.html
     - Added novalidate attribute is used in <form> elements to prevent the browser from validating form inputs before submission.
   - Updated the design of the page
 - **Reset Password**
-  - Created password_reset_set_password.html in user_account > view.py
+  - Create password_reset_set_password in user_account > views.py
+  - Created password_reset_set_password.html in user_account > template > password
   - Setup urls for password_reset view in user_account > urls.py
   - Added the set_password form in user_account > templates > password > password_reset_set_password.html
       - Added novalidate attribute is used in <form> elements to prevent the browser from validating form inputs before submission.
@@ -323,9 +326,38 @@ In your base.html template, include Bootstrap 5 CDN
 
 ### Version 1.4
 - **Show User/Profile**
-  - Development in Progress
+  - Added image size function in user_account > models.py
+  - Created profile_view in user_account > views.py
+  - Setup urls for profile_view in user_account > urls.py
+  - Added the password_reset form in user_account > templates > password > password_reset_request.html
+    - Added novalidate attribute is used in <form> elements to prevent the browser from validating form inputs before submission.
+  - Created a css file for profile and update profile page
+  - Updated the design of the page
 - **Edit User/Profile**
-  - Development in Progress
+  - Created profile_update in user_account > views.py
+  - Created ProfileForm in user_account > forms.py
+  - Created UserUpdateForm in user_account > forms.py
+  - Setup urls for password_reset views in user_account > urls.py
+  - Added the password_reset form in user_account > templates > password > password_reset_set_password.html
+    - Added novalidate attribute is used in <form> elements to prevent the browser from validating form inputs before submission.
+  - Updated the design of the page
+
+
+### Version 1.5
+- **Overall**
+  - Update the fonts throughout the application.
+    - All the h tags: Arial 
+    - nav-bar: Arial 
+    - p: sans-serif 
+    - buttons: Helvetica
+- **Navigation Bar**
+  - Make Logo bigger (100px)
+  - Fixed the spacing between the profile link and the profile icon.
+  - Added header in the middle of the nav bar.
+- **Create Account & Update Password Pages**
+  - Updated the password help text.
+- **Log In Page**
+  - Moved the forgot password link above the login button.
 
 
 ### Tested The Following
@@ -345,6 +377,8 @@ In your base.html template, include Bootstrap 5 CDN
 14. Public/User Menu functioning.
 15. Forgot password feature is functioning.
 16. Reset password feature is functioning.
+17. Profile page is functioning.
+18. Update profile page is functioning.
 
 
 ## Contributing

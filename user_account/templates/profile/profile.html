@@ -5,71 +5,78 @@
 {% block styles %}
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock styles %}
-{% block title %} Profile - Spielcraft Game {% endblock title%}
-{% block main_heading %}{% endblock %}
+{% block title %}Profile - Spielcraft Game{% endblock title%}
 {% block content %}
-    <div class="container">
-        {% comment %} Display Player Details if Logged In {% endcomment %}
-        {% if user.username %}
-            <div class="row">
-                {# Show Player Personal Details #}
-                <div class="">
-                    <div class="">
-                        <img src="{{profile.avatar.url}}" style="width: 300px;" class="img-fluid img-thumbnail rounded-circle" alt="Game Avatar">
-                        <div class="">
-                            <h4 class="">{{profile.display_name}}'s Profile</h4>
-                            <p class="">{{user.first_name}} {{user.last_name}}</p>
-                            <p class="">{{ user.email }}</p>
-                            <p class="">State: {{ user.state }}</p>
-                            <h4>Player Bio:</h4>
-                            <p class="">{{profile.player_bio}}</p>
-                        </div>
+    <div class="container py-4">
+        {# Show Avatar#}
+        <div class="d-flex align-items-center">
+            <img src="{{profile.avatar.url}}" class="img-fluid rounded-circle me-4 profile__avatar" alt="Player Avatar">
+            <h1>{{profile.display_name}}</h1>
+        </div>
 
-                        <!-- Form to delete bio -->
-                        <div class="bg-dark">
-                            <form action="{% url 'user_account:profile' %}" method="post">
-                                {% csrf_token %}
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteConfirmationModal">
-                                    Delete Player Bio
-                                </button>
+        {# Biography Section #}
+        <div class="my-4">
+            <h3 class="mb-3">Biography</h3>
+            <p>{{profile.player_bio}}</p>
+        </div>
 
-                                <!-- Delete Confirmation Modal -->
-                                <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog"
-                                     aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content bg-dark">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirmation</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Are you sure you want to delete your player bio?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                                <button type="submit" name="delete_player_bio" class="btn btn-danger">Yes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    {% comment %} Edit Player Profile {% endcomment %}
-                    <div class="text-center">
-                        <a href="{% url 'user_account:profile_update' %}" class="btn btn-danger">Edit {{ profile.display_name }}'s Profile</a>
-                    </div>
+        {# Profile/User Details Section #}
+        <div class="row">
+            <h3 class="mb-4">Profile Details</h3>
+            <div class="col-lg-6 col-md-6 d-flex justify-content-center align-items-center">
+                <div class="text-center mb-4">
+                    <h4>{{ user.username }}</h4>
+                    <div class="my-2 profile__custom_border_bottom"></div>
+                    <h5>Username</h5>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 d-flex justify-content-center align-items-center">
+                <div class="text-center mb-4">
+                    <h4>{{ user.email }}</h4>
+                    <div class="my-2 profile__custom_border_bottom"></div>
+                    <h5>Email</h5>
                 </div>
             </div>
 
-        {% comment %} Display if No Player Logged In {% endcomment %}
-        {% else %}
-            Profile - Spielcraft Games
-        {% endif %}
+        </div>
+
+        {# Profile Details #}
+        <div class="row">
+            <div class="col-lg-6 col-md-6 d-flex justify-content-center align-items-center">
+                <div class="text-center mb-4">
+                    <h4>{{ user.first_name }}</h4>
+                    <div class="my-2 profile__custom_border_bottom"></div>
+                    <h5>First Name</h5>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 d-flex justify-content-center align-items-center">
+                <div class="text-center mb-4">
+                    <h4>{{ user.last_name }}</h4>
+                    <div class="my-2 profile__custom_border_bottom"></div>
+                    <h5>Last Name</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 d-flex justify-content-center align-items-center">
+                <div class="text-center mb-4">
+                    <h4>{{ profile.display_name }}</h4>
+                    <div class="my-2 profile__custom_border_bottom"></div>
+                    <h5>Display Name</h5>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 d-flex justify-content-center align-items-center">
+                <div class="text-center mb-4">
+                    {# Since you've defined the choices for the state field in your model, Django will generate the get_<field_name>_display method for you. #}
+                    <h4>{{ user.get_state_display }}</h4>
+                    <div class="my-2 profile__custom_border_bottom"></div>
+                    <h5>State</h5>
+                </div>
+            </div>
+        </div>
     </div>
-{%endblock%}
+{% endblock %}
 {% block script %}
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>

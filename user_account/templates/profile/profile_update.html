@@ -2,34 +2,52 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% load crispy_forms_filters %}
-<link rel="stylesheet" href="{% static 'css/authentication.css' %}">
-{% block styles %}{% endblock styles %}
-{% block title %} Edit Profile - Spielcraft Games {% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock styles %}
+{% block title %}Update Profile - Spielcraft Games{% endblock %}
 {% block content %}
-    {% comment %} Main Info of User {% endcomment %}
-    <div class="d-flex flex-column justify-content-center align-items-center p-2">
-        <div class="content-section">
-            <div class="media">
-                <img class="rounded-circle account-img" src="{{ user.profile.avatar.url }}" alt="Avatar">
-                <div class="media-body">
-                    <h2 class="account-heading">{{ user.profile.display_name }}</h2>
-                    <p class="text-secondary">{{ user.email }}</p>
+    {# Update Profile Button #}
+    <div class="container p-4">
+        {# Show Player Personal Details #}
+        <div class="d-flex flex-column">
+            <img src="{{ user.profile.avatar.url }}" class="img-fluid rounded-circle me-4 profile__avatar" alt="Player Avatar">
+            <h2>{{ user.profile.display_name }}</h2>
+        </div>
+
+        {# Display Profile Update Form #}
+        <form class="p-4" method="POST" enctype="multipart/form-data" action="{% url 'user_account:profile_update' %}" novalidate>
+            {# Update Profile Button #}
+            <div class="d-flex justify-content-between mb-2">
+                <div>
+                    <h1>Profile</h1>
+                    <p>View and edit your personal information below.</p>
+                </div>
+                <div>
+                    <a class="btn btn-outline-danger me-3 mb-3" href="{% url 'user_account:profile_view' %}">Discard</a>
+                    <button type="submit" class="btn btn-danger mb-3">Update Info</button>
                 </div>
             </div>
-        </div>
-        {% comment %} Display Profile Update Form {% endcomment %}
-        <form class="border rounded p-3" method="POST" enctype="multipart/form-data" action="{% url 'user_account:profile_update' %}" novalidate>
-            <fieldset>
-                <legend class="mb-2">Edit {{ user.profile.display_name }}'s Profile</legend>
-                {% csrf_token %}
-                {{ user_update_form | crispy }}
-                {{ profile_form | crispy }}
-                <button type="submit" class="btn btn-primary">Update {{ user.profile.display_name }}Profile</button>
-            </fieldset>
+            <div class="row">
+                <div class="my-3">
+                    <h3 class="mb-2">Profile Info</h3>
+                    <p>Update your personal information.</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-5 mx-auto">
+                        <fieldset>
+                            {% csrf_token %}
+                            {{ user_update_form | crispy }}
+                        </fieldset>
+                    </div>
+                    <div class="col-md-5 mt-4 mt-md-0 mx-auto">
+                        <fieldset>
+                            {{ profile_form | crispy }}
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
         </form>
-        <br>
-        {% comment %} Back to Profile Page {% endcomment %}
-        <p>Back to <a href="{% url 'user_account:profile' %}">{{ user.profile.display_name }}'s Profile</a></p>
     </div>
 {% endblock %}
 {% block script %}{% endblock script %}

@@ -1,0 +1,14 @@
+.profile__avatar {
+    max-width: 200px !important;
+    max-height: 200px !important;
+}
+
+.profile__custom_border_bottom {
+    border-bottom: 2px solid red !important;
+}
+
+textarea {
+  height: 100px !important;
+}
+
+
